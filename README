@@ -1,1 +1,14 @@
-This file was created by IntelliJ IDEA 12.1.4 for binding GitHub repository
+sTomorrowToday
+==============
+
+sTomorrowToday is a framework for developing applications as network based services. It provides autodiscovery of services and json based communication. It also provides an actorbased framework for asynchronic programming, allowing you to define a main method which runs idependently from the main program while reacting to requests at the same time.
+
+Install
+=======
+
+Download the sources and issue "mvn install" in the base folder.
+
+Usage
+=====
+
+To create an application, please use the TomorrowTodayCodeGenerator https://github.com/joernweissenborn/TomorrowTodayCodeGenerator
