@@ -18,7 +18,7 @@ class ConfigSupplier {
     private final val testKey = "{\"apikey\":\"TestApi\",\"functions\":[{\"name\":\"echo\",\"inputs\":[{\"name\":\"msg\",\"datatype\":\"string\"}],\"outputs\":[{\"name\":\"echo\",\"datatype\":\"string\"}]}]}"
 
 
-        private var configfile: File = null
+    private var configfile: File = null
     private var devmode = false
     private var ImportedApiKeys: List[ApiKey] = List(new ApiKey(testKey))
     private var ExportedApiKeys: List[ApiKey] = List(new ApiKey(testKey))

@@ -13,13 +13,6 @@ import org.json4s.native.JsonMethods._
 import org.specs2.mutable.Specification
 
 
-/**
- * Created with IntelliJ IDEA.
- * User: joern
- * Date: 8/16/13
- * Time: 2:22 PM
- * To change this template use File | Settings | File Templates.
- */
 case class NewPeer(peer: String)
 case class PeerGone(peer: String)
 
@@ -81,11 +74,11 @@ class ComLayer(core: Actor) extends Actor{
                 case InitApiKeyImport(key) => {
                     iKeys.append(key)
                     iface.join(key.name)
-                    println("Initiated Key Import for "+key.name)
+                    //println("Initiated Key Import for "+key.name)
                 }
                 case InitApiKeyExport(key) => {
                     oKeys.append(key)
-                    println("Initiated Key Export for: "+key.name)
+                    //println("Initiated Key Export for: "+key.name)
                 }
             }
         }
@@ -95,12 +88,12 @@ class ComLayer(core: Actor) extends Actor{
     private class incoming extends Actor{
         override def act{
             while (true){
-                //println("listening")
+                ////println("listening")
                 var incoming = iface.recv()
                 var cmd = incoming.popString()
-                //println(cmd)
+                ////println(cmd)
                 var peer = incoming.popString()
-                //println(peer)
+                ////println(peer)
 
                 cmd match {
                     case "ENTER" => self ! NewPeer(peer)
@@ -133,7 +126,7 @@ class ComLayer(core: Actor) extends Actor{
 
 
                     }
-                    case _ => println("KA")
+                    case _ => //println("KA")
                 }
                 //if (cmd.equals("SHOUT")||cmd.equals("WHISPER")) core ! NewMsg(peer, incoming)
 
@@ -144,7 +137,7 @@ class ComLayer(core: Actor) extends Actor{
     private class loggeractor extends Actor{
         override def act{
             while (true){
-                println("logging")
+                //println("logging")
 
                 //if (cmd.equals("SHOUT")||cmd.equals("WHISPER")) core ! NewMsg(peer, incoming)
 
