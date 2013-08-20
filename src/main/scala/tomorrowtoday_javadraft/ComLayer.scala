@@ -1,16 +1,12 @@
 package tomorrowtoday_javadraft
 
-import org.zyre
 import scala.actors.Actor
-import org.zyre.{ZreLog, ZreLogger, ZreInterface}
-import org.jeromq.{ZLogManager, ZLog, ZMsg, ZFrame}
-import org.jeromq.ZMQ.Poller
-import tomorrowtoday_javadraft.ApiKey
+import org.zyre.ZreInterface
+import org.jeromq.ZMsg
 import scala.collection.mutable.ListBuffer
 import org.json4s._
 import org.json4s.JsonDSL._
 import org.json4s.native.JsonMethods._
-import org.specs2.mutable.Specification
 
 
 case class NewPeer(peer: String)
@@ -25,8 +21,8 @@ case class Exports(exports:List[String])
 class ComLayer(core: Actor) extends Actor{
     private final val iface = new ZreInterface()
     private final val incoming = new incoming()
-    private var iKeys: ListBuffer[ApiKey] = ListBuffer[ApiKey]()
-    private var oKeys: ListBuffer[ApiKey] = ListBuffer[ApiKey]()
+    private val iKeys: ListBuffer[ApiKey] = ListBuffer[ApiKey]()
+    private val oKeys: ListBuffer[ApiKey] = ListBuffer[ApiKey]()
     val self = this
     incoming.start()
 
@@ -89,10 +85,10 @@ class ComLayer(core: Actor) extends Actor{
         override def act{
             while (true){
                 ////println("listening")
-                var incoming = iface.recv()
-                var cmd = incoming.popString()
+                val incoming = iface.recv()
+                val cmd = incoming.popString()
                 ////println(cmd)
-                var peer = incoming.popString()
+                val peer = incoming.popString()
                 ////println(peer)
 
                 cmd match {

@@ -11,9 +11,23 @@
 
     <repositories>
         <repository>
+            <id>nightlabs</id>
+            <url>http://dev.nightlabs.org/maven-repository/repo</url>
+        </repository>
+        <repository>
             <id>scala-tools.org</id>
             <name>Scala-Tools Maven2 Repository</name>
             <url>http://scala-tools.org/repo-releases</url>
+        </repository>
+        <repository>
+            <id>sonatype-nexus-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
     </repositories>
 
@@ -86,7 +100,11 @@
             <version>${scala.version}</version>
         </dependency>
 
-
+        <dependency>
+            <groupId>org.jeromq</groupId>
+            <artifactId>jeromq</artifactId>
+            <version>0.3.0-SNAPSHOT</version>
+        </dependency>
 
     </dependencies>
 
@@ -123,6 +141,7 @@
 				<target>1.5</target>
 			</configuration>
 		</plugin>
+            <!-- For what?
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-eclipse-plugin</artifactId>
@@ -139,7 +158,7 @@
                         <classpathContainer>ch.epfl.lamp.sdt.launching.SCALA_CONTAINER</classpathContainer>
                     </classpathContainers>
                 </configuration>
-            </plugin>
+            </plugin>   -->
 
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
@@ -150,13 +169,15 @@
                             <mainClass>tomorrowtoday_javadraft.App</mainClass>
                             <addClasspath>true</addClasspath>
                             <classpathLayoutType>custom</classpathLayoutType>
-                            <customClasspathLayout>lib/$${artifact.artifactId}-$${artifact.version}$${dashClassifier?}.$${artifact.extension}
+                            <customClasspathLayout>lib/${artifactId}-${version}.${packaging}
                             </customClasspathLayout>
                         </manifest>
                     </archive>
                 </configuration>
             </plugin>
+            <!--For what? Use assembly plugin!
             <plugin>
+
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>2.3</version>
                 <configuration>
@@ -170,9 +191,10 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>  -->
         </plugins>
     </build>
+
     <reporting>
         <plugins>
             <plugin>
